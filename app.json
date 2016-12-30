@@ -1,0 +1,4 @@
+{
+  "name": "HTML Sanitizing",
+  "description": "External microservice to ease validation of HTML documents"
+}
