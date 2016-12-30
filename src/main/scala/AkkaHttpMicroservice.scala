@@ -104,7 +104,7 @@ trait Service extends Protocols {
   }
 }
 
-object AkkaHttpMicroservice extends App with Service {
+object AkkaHttpMicroservice extends App with HttpRouter {
   override implicit val system = ActorSystem()
   override implicit val executor = system.dispatcher
   override implicit val materializer = ActorMaterializer()
@@ -112,5 +112,5 @@ object AkkaHttpMicroservice extends App with Service {
   override val config = ConfigFactory.load()
   override val logger = Logging(system, getClass)
 
-  Http().bindAndHandle(routes, config.getString("http.interface"), config.getInt("http.port"))
+  Http().bindAndHandle(routes, config.getString("http.host"), Integer.parseInt(config.getString("http.port")))
 }
